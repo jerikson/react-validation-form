@@ -34999,6 +34999,7 @@ module.exports = warning;
 },{"_process":163}],404:[function(require,module,exports){
 var React = require('react');
 var validator = require('email-validator');
+var classNames = require('classnames');
 
 var EmailField = React.createClass({
     displayName: 'EmailField',
@@ -35007,8 +35008,6 @@ var EmailField = React.createClass({
         return { valid: true, value: "" };
     },
     onChange: function (e) {
-        //var val = e.target.value;
-
         if (!validator.validate(e.target.value)) {
             this.setState({ valid: false, value: e.target.value });
         } else {
@@ -35019,14 +35018,14 @@ var EmailField = React.createClass({
         this.setState({ valid: true, value: "" });
     },
     render: function () {
-        var divClass = this.state.valid ? "form-group" : "form-group has-error has-feedback";
-        var inputClass = this.state.valid ? "form-control has-feedback" : "form-control has-warning has-feedback";
-        var glyphClass = this.state.valid ? "" : "glyphicon glyphicon-remove form-control-feedback";
+        var divClass = classNames('form-group has-feedback', this.state.valid ? "has-success" : "has-error");
+        var inputClass = classNames('form-control', this.state.valid ? "has-success" : "has-error");
+        var glyphClass = classNames('form-control-feedback', 'glyphicon', this.state.valid ? "glyphicon-ok" : "glyphicon-remove");
 
         return React.createElement(
             'div',
             { className: divClass },
-            React.createElement('span', { className: glyphClass }),
+            React.createElement('i', { className: glyphClass }),
             React.createElement('input', { className: inputClass, onChange: this.onChange, placeholder: 'Email', value: this.state.value })
         );
     }
@@ -35034,7 +35033,7 @@ var EmailField = React.createClass({
 
 module.exports = EmailField;
 
-},{"email-validator":64,"react":399}],405:[function(require,module,exports){
+},{"classnames":11,"email-validator":64,"react":399}],405:[function(require,module,exports){
 var React = require('react');
 var EmailField = require('./EmailField.jsx');
 var NameField = require('./NameField.jsx');
@@ -35068,8 +35067,9 @@ var Form = React.createClass({
                     'div',
                     { className: 'panel-body' },
                     React.createElement(NameField, { type: 'First', ref: 'fieldName' }),
-                    React.createElement('br', null),
+                    React.createElement('p', null),
                     React.createElement(EmailField, { ref: 'fieldEmail' }),
+                    React.createElement('p', null),
                     React.createElement(
                         'button',
                         { className: 'btn btn-primary', onClick: this.onSubmit },

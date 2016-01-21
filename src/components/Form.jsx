@@ -24,8 +24,9 @@ var Form = React.createClass({
                 <div className="panel panel-default">
                     <div className="panel-body">
                         <NameField type="First" ref="fieldName"/>
-                        <br />
+                        <p></p>
                         <EmailField ref="fieldEmail"/>
+                        <p></p>
                         <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
                     </div>
                 </div>

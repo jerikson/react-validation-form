@@ -1,14 +1,12 @@
 var React = require('react');
 var validator = require('email-validator');
-
+var classNames = require('classnames');
 
 var EmailField = React.createClass({
     getInitialState: function() {
         return {valid: true, value: ""}
   },
     onChange: function(e) {
-        //var val = e.target.value;
-
         if(!validator.validate(e.target.value)) {
             this.setState({valid: false, value: e.target.value})
         } else {
@@ -19,13 +17,13 @@ var EmailField = React.createClass({
         this.setState({valid: true, value: ""})
     },
     render: function() {
-        var divClass = this.state.valid ? "form-group" : "form-group has-error has-feedback";
-        var inputClass = this.state.valid ? "form-control has-feedback" : "form-control has-warning has-feedback";
-        var glyphClass = this.state.valid ? "" : "glyphicon glyphicon-remove form-control-feedback";
+        var divClass = classNames('form-group has-feedback', (this.state.valid ? "has-success" : "has-error"));
+        var inputClass = classNames('form-control', (this.state.valid ? "has-success" : "has-error"));
+        var glyphClass = classNames('form-control-feedback', 'glyphicon', (this.state.valid ? "glyphicon-ok" : "glyphicon-remove"));
 
         return (
             <div className={divClass}>
-                <span className={glyphClass}></span>
+                <i className={glyphClass}></i>
                 <input className={inputClass} onChange={this.onChange} placeholder="Email"value={this.state.value}/>
             </div>
           );
