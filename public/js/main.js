@@ -35019,11 +35019,15 @@ var EmailField = React.createClass({
         this.setState({ valid: true, value: "" });
     },
     render: function () {
-        var formClass = this.state.valid ? "form-group" : "form-group has-error has-feedback";
+        var divClass = this.state.valid ? "form-group" : "form-group has-error has-feedback";
+        var inputClass = this.state.valid ? "form-control has-feedback" : "form-control has-warning has-feedback";
+        var glyphClass = this.state.valid ? "" : "glyphicon glyphicon-remove form-control-feedback";
+
         return React.createElement(
             'div',
-            { className: formClass },
-            React.createElement('input', { className: 'form-control', onChange: this.onChange, placeholder: 'Email', value: this.state.value })
+            { className: divClass },
+            React.createElement('span', { className: glyphClass }),
+            React.createElement('input', { className: inputClass, onChange: this.onChange, placeholder: 'Email', value: this.state.value })
         );
     }
 });
