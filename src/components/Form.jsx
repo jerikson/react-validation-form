@@ -7,7 +7,7 @@ var Form = React.createClass({
 
         if(!this.refs.fieldEmail.state.valid) {
             console.log("email-error thrown");
-            alert("invalid email address");
+          //  alert("Please enter a valid email address");
         } else {
           //  Some request
           var someRequest = {
