@@ -35052,16 +35052,16 @@ var Form = React.createClass({
 
         if (!this.refs.fieldEmail.state.valid) {
             console.log("email-error thrown");
-            alert("invalid email address");
+            //  alert("Please enter a valid email address");
         } else {
-            //  Some request
-            var someRequest = {
-                //  email: this.refs.fieldEmail.state.value,
-                //  username: this.refs.fieldName.state.value
-            };
-            this.refs.fieldEmail.clear();
-            this.refs.fieldName.clear();
-        }
+                //  Some request
+                var someRequest = {
+                    //  email: this.refs.fieldEmail.state.value,
+                    //  username: this.refs.fieldName.state.value
+                };
+                this.refs.fieldEmail.clear();
+                this.refs.fieldName.clear();
+            }
     },
     render: function () {
         return React.createElement(
